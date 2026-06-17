@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -342,6 +342,268 @@
     .auth-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
     .auth-header h2 { font-size: 24px; font-weight: 700; color: #1F2937; }
     .auth-switch { background: #EFF6FF; color: #2563EB; border: none; padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; }
+    .auth-type-selector {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .auth-type {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px;
+      border: 2px solid #E5E7EB;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: white;
+    }
+    .auth-type:hover {
+      border-color: #10B981;
+    }
+    .auth-type.active {
+      border-color: #10B981;
+      background: rgba(16, 185, 129, 0.05);
+    }
+    .auth-type .type-icon {
+      font-size: 18px;
+    }
+    .auth-type span {
+      font-weight: 500;
+      color: #374151;
+    }
+    .auth-type.active span {
+      color: #10B981;
+    }
+
+    .warning-banner {
+      background: #FFFBEB;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 24px;
+      color: #92400E;
+      font-size: 14px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #374151;
+    }
+
+    .required {
+      color: #EF4444;
+      margin-right: 4px;
+    }
+
+    .photo-upload-row {
+      display: flex;
+      gap: 16px;
+    }
+
+    .photo-upload {
+      flex: 1;
+      border: 2px dashed #E5E7EB;
+      border-radius: 8px;
+      padding: 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .photo-upload:hover {
+      border-color: #10B981;
+      background: rgba(16, 185, 129, 0.05);
+    }
+
+    .photo-upload .upload-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .photo-upload .upload-text {
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 4px;
+    }
+
+    .photo-upload .upload-hint {
+      font-size: 12px;
+      color: #9CA3AF;
+    }
+
+    .upload-input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .auth-steps {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    .auth-steps .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .auth-steps .step .step-number {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #E5E7EB;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: #9CA3AF;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .auth-steps .step.active .step-number {
+      background: #10B981;
+      color: white;
+    }
+
+    .auth-steps .step span {
+      font-size: 14px;
+      color: #9CA3AF;
+    }
+
+    .auth-steps .step.active span {
+      color: #10B981;
+      font-weight: 500;
+    }
+
+    .form-section {
+      background: #F9FAFB;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .form-section h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1F2937;
+      margin-bottom: 16px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .photo-upload-row {
+      display: flex;
+      gap: 16px;
+    }
+
+    .photo-upload {
+      flex: 1;
+      border: 2px dashed #E5E7EB;
+      border-radius: 8px;
+      padding: 24px 16px;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+    }
+
+    .photo-upload:hover {
+      border-color: #10B981;
+      background: rgba(16, 185, 129, 0.05);
+    }
+
+    .photo-upload .upload-icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .photo-upload .upload-text {
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .photo-upload .upload-hint {
+      font-size: 12px;
+      color: #9CA3AF;
+    }
+
+    .photo-upload .upload-actions {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .photo-upload .ocr-btn {
+      background: #10B981;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .photo-upload .delete-btn {
+      width: 28px;
+      height: 28px;
+      background: #F3F4F6;
+      color: #6B7280;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .upload-input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .btn-back {
+      background: transparent;
+      border: none;
+      color: #6B7280;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .btn-back:hover {
+      color: #10B981;
+    }
+
     .auth-form { display: flex; flex-direction: column; gap: 16px; }
     .login-tabs { display: flex; gap: 32px; margin-bottom: 24px; border-bottom: 1px solid #E5E7EB; padding-bottom: 12px; }
     .login-tabs .tab { font-size: 16px; font-weight: 500; color: #6B7280; cursor: pointer; padding-bottom: 12px; position: relative; }
@@ -775,7 +1037,15 @@
             <div class="prd-desc">跳转注册页面</div>
           </div>
         </div>
-        <button class="btn btn-secondary">联系我们</button>
+        <div class="prd-container" style="display:inline-block">
+          <button class="btn btn-secondary">联系我们</button>
+          <div class="prd-marker" style="top: -10px; right: -10px;" onclick="togglePrdTooltip('tooltip-contact')">!</div>
+          <div class="prd-tooltip" id="tooltip-contact" style="top: 30px; right: 0;">
+            <button class="prd-close" onclick="togglePrdTooltip('tooltip-contact')">×</button>
+            <div class="prd-title">说明</div>
+            <div class="prd-desc">跳转联系我们</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1352,22 +1622,55 @@
             </div>
             <div class="form-container">
               <div class="form-section">
-                <h3>企业认证四要素信息</h3>
-                <div class="form-group">
-                  <label><span class="required">*</span> 企业名称</label>
-                  <input type="text" id="face-company-name" placeholder="请输入企业或者组织机构名称">
+                <h3>证件图片</h3>
+                <div class="photo-upload-row">
+                  <div class="photo-upload" id="upload-license">
+                    <div class="upload-icon">📄</div>
+                    <div class="upload-text">营业执照</div>
+                    <div class="upload-hint">请上传营业执照照片</div>
+                    <input type="file" accept="image/*" class="upload-input">
+                  </div>
+                  <div class="photo-upload" id="upload-id-front">
+                    <div class="upload-icon">📷</div>
+                    <div class="upload-text">法人身份证正面</div>
+                    <div class="upload-hint">请上传法人身份证正面照片</div>
+                    <input type="file" accept="image/*" class="upload-input">
+                  </div>
+                  <div class="photo-upload" id="upload-id-back">
+                    <div class="upload-icon">📷</div>
+                    <div class="upload-text">法人身份证反面</div>
+                    <div class="upload-hint">请上传法人身份证反面照片</div>
+                    <input type="file" accept="image/*" class="upload-input">
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label><span class="required">*</span> 统一社会信用代码</label>
-                  <input type="text" id="face-credit-code" placeholder="请输入企业或者组织机构的统一社会信用代码">
-                </div>
-                <div class="form-group">
-                  <label><span class="required">*</span> 法人姓名</label>
-                  <input type="text" id="face-legal-name" placeholder="请输入法人姓名">
-                </div>
-                <div class="form-group">
-                  <label><span class="required">*</span> 法人身份证号</label>
-                  <input type="text" id="face-legal-id" placeholder="请输入法人身份证号">
+              </div>
+              <div class="form-section">
+                <h3>企业认证信息</h3>
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label><span class="required">*</span> 企业名称</label>
+                    <input type="text" id="face-company-name" placeholder="请输入企业或者组织机构名称">
+                  </div>
+                  <div class="form-group">
+                    <label><span class="required">*</span> 统一社会信用代码</label>
+                    <input type="text" id="face-credit-code" placeholder="请输入统一社会信用代码">
+                  </div>
+                  <div class="form-group">
+                    <label><span class="required">*</span> 法定代表人姓名</label>
+                    <input type="text" id="face-legal-name" placeholder="请输入法定代表人姓名">
+                  </div>
+                  <div class="form-group">
+                    <label><span class="required">*</span> 法定代表人身份证</label>
+                    <input type="text" id="face-legal-id" placeholder="请输入法定代表人身份证号">
+                  </div>
+                  <div class="form-group">
+                    <label><span class="required">*</span> 企业地址</label>
+                    <input type="text" id="face-company-address" placeholder="请输入企业地址">
+                  </div>
+                  <div class="form-group">
+                    <label><span class="required">*</span> 企业联系电话</label>
+                    <input type="text" id="face-company-phone" placeholder="请输入企业联系电话">
+                  </div>
                 </div>
               </div>
               <div class="checkbox-group">
@@ -1428,6 +1731,17 @@
         <div class="auth-header">
           <h2>账号注册</h2>
           <button class="auth-switch" onclick="showPage('page-login')">去登录</button>
+        </div>
+        
+        <div class="auth-type-selector">
+          <div class="auth-type active" id="register-type-individual" onclick="selectRegisterType('individual')">
+            <div class="type-icon">👤</div>
+            <span>个人注册</span>
+          </div>
+          <div class="auth-type" id="register-type-enterprise" onclick="selectRegisterType('enterprise')">
+            <div class="type-icon">🏢</div>
+            <span>企业注册</span>
+          </div>
         </div>
         
         <form class="auth-form" id="registerForm">
@@ -1597,6 +1911,19 @@
       }
     }
 
+    function selectRegisterType(type) {
+      const individual = document.getElementById('register-type-individual');
+      const enterprise = document.getElementById('register-type-enterprise');
+      
+      if (type === 'individual') {
+        individual.classList.add('active');
+        enterprise.classList.remove('active');
+      } else {
+        enterprise.classList.add('active');
+        individual.classList.remove('active');
+      }
+    }
+
     function togglePrdTooltip(tooltipId) {
       const tooltip = document.getElementById(tooltipId);
       if (tooltip) {
@@ -1739,8 +2066,15 @@
       document.getElementById('registerForm').addEventListener('submit', function(e) {
         e.preventDefault();
         if (validateForm()) {
-          alert('注册成功！');
-          showPage('page-login');
+          const registerType = document.querySelector('.auth-type.active').id.replace('register-type-', '');
+          showPage('page-console');
+          setTimeout(function() {
+            if (registerType === 'individual') {
+              showAuthPanel('personal-auth');
+            } else {
+              showAuthPanel('enterprise-auth');
+            }
+          }, 100);
         }
       });
     }
