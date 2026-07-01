@@ -252,7 +252,7 @@
 
     /* 控制台页面 */
     .console-page { display: flex; height: 100vh; margin: 0; padding: 0; }
-    .console-sidebar { width: 240px; background: white; color: #1F2937; padding: 0; flex-shrink: 0; display: flex; flex-direction: column; height: 100%; position: fixed; left: 0; top: 64px; bottom: 0; overflow-y: auto; border-right: 1px solid #E5E7EB; }
+    .console-sidebar { width: 240px; background: white; color: #1F2937; padding: 0 0 90px 0; flex-shrink: 0; display: flex; flex-direction: column; position: fixed; left: 0; top: 64px; bottom: 0; overflow-y: auto; border-right: 1px solid #E5E7EB; box-sizing: border-box; }
     .sidebar-header { padding: 20px; border-bottom: 1px solid #E5E7EB; }
     .sidebar-logo { font-size: 14px; font-weight: 600; }
     .sidebar-section { padding: 16px 0; }
@@ -265,6 +265,98 @@
     .submenu button { padding-left: 40px; font-size: 13px; color: #6B7280; }
     .submenu button:hover { color: #10B981; background: #F0FDF4; }
     .submenu button.active { background: #ECFDF5; color: #10B981; }
+    .sidebar-footer-user {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 12px 16px;
+      border-top: 1px solid #E5E7EB;
+      background: white;
+      z-index: 10;
+      box-sizing: border-box;
+    }
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.2s;
+      position: relative;
+    }
+    .user-info:hover {
+      background: #F3F4F6;
+    }
+    .user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #10B981, #059669);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .user-details {
+      flex: 1;
+      min-width: 0;
+    }
+    .user-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1F2937;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .user-email {
+      font-size: 12px;
+      color: #6B7280;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .user-dropdown-arrow {
+      color: #9CA3AF;
+      font-size: 12px;
+    }
+    .user-dropdown-menu {
+      display: none;
+      position: absolute;
+      bottom: 60px;
+      left: 16px;
+      right: 16px;
+      background: white;
+      border: 1px solid #E5E7EB;
+      border-radius: 10px;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+      z-index: 100;
+      overflow: hidden;
+    }
+    .user-dropdown-menu.show {
+      display: block;
+    }
+    .user-dropdown-item {
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #4B5563;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+    .user-dropdown-item:hover {
+      background: #F3F4F6;
+    }
+    .user-dropdown-item.logout {
+      color: #EF4444;
+      border-top: 1px solid #F3F4F6;
+    }
     .console-content { flex: 1; padding: 32px; background: #F9FAFB; overflow-y: auto; margin-left: 240px; min-height: 100vh; }
     .console-panel { display: block; }
 
@@ -430,12 +522,13 @@
     .query-btn { padding: 8px 20px; border: none; background: #3B82F6; color: white; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; }
     .current-time { font-size: 13px; color: #6B7280; }
 
-    .dashboard-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 20px; }
+    .dashboard-cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 20px; }
     .dash-stat-card { background: white; border-radius: 12px; padding: 20px; border: 1px solid #E5E7EB; }
     .stat-card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
     .stat-label { font-size: 13px; color: #6B7280; }
     .stat-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; }
     .stat-icon.blue { background: #EFF6FF; color: #3B82F6; }
+    .stat-icon.teal { background: #F0FDFA; color: #0D9488; }
     .stat-icon.green { background: #ECFDF5; color: #10B981; }
     .stat-icon.yellow { background: #FFFBEB; color: #F59E0B; }
     .stat-icon.purple { background: #F5F3FF; color: #8B5CF6; }
@@ -1085,7 +1178,6 @@
     .reset-steps .step-line.active { background: #10B981; }
     
     .reset-form { display: flex; flex-direction: column; gap: 16px; }
-    .reset-form .form-group { margin-bottom: 0; }
     .btn-full { width: 100%; padding: 12px; }
     .form-group { display: flex; flex-direction: column; }
     .form-group-row { display: flex; flex-direction: row; gap: 12px; align-items: stretch; }
@@ -1417,9 +1509,15 @@
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
 
-    .bill-filter-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .bill-filter-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: end; }
     .bill-filter-item { display: flex; flex-direction: column; gap: 6px; }
     .bill-filter-item label { font-size: 13px; font-weight: 500; color: #374151; }
+    .bill-filter-actions { display: flex; gap: 8px; align-items: flex-end; }
+    .bill-filter-btn { padding: 9px 20px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; border: none; }
+    .bill-filter-btn-query { background: #10B981; color: white; }
+    .bill-filter-btn-query:hover { background: #059669; }
+    .bill-filter-btn-reset { background: white; color: #4B5563; border: 1px solid #D1D5DB; }
+    .bill-filter-btn-reset:hover { background: #F3F4F6; }
     .bill-filter-input, .bill-filter-select {
       padding: 9px 12px; border: 1px solid #D1D5DB; border-radius: 8px;
       font-size: 14px; color: #1F2937; background: white; outline: none;
@@ -1432,6 +1530,27 @@
       position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
       font-size: 14px; color: #9CA3AF;
     }
+
+    .bill-stats-card {
+      background: white; border-radius: 10px; padding: 14px;
+      border: 1px solid #E5E7EB;
+    }
+    .bill-stats-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .bill-stats-header h4 { font-size: 14px; font-weight: 600; color: #1F2937; }
+    .bill-stats-note { font-size: 11px; color: #9CA3AF; }
+    .bill-stats-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+    }
+    .bill-stats-item {
+      background: #F9FAFB; border-radius: 8px; padding: 10px 14px;
+      display: flex; flex-direction: column; gap: 4px;
+      border: 1px solid #F3F4F6;
+    }
+    .bill-stats-label { font-size: 12px; color: #6B7280; font-weight: 500; }
+    .bill-stats-value { font-size: 18px; font-weight: 700; color: #059669; }
 
     .bill-table-card {
       background: white; border-radius: 12px; padding: 20px;
@@ -1456,6 +1575,8 @@
       padding: 14px 16px; border-bottom: 1px solid #F3F4F6;
       color: #374151;
     }
+    .bill-table tbody td.amount-col { text-align: right; font-variant-numeric: tabular-nums; }
+    .bill-table thead th.amount-col { text-align: right; }
     .bill-table tbody tr:hover { background: #F9FAFB; }
     .bill-table tbody tr:last-child td { border-bottom: none; }
 
@@ -3996,8 +4117,29 @@
             <li><button onclick="showConsolePage('wallet')">钱包管理</button></li>
             <li><button onclick="showConsolePage('bill')">充值账单</button></li>
             <li><button onclick="showConsolePage('settings')">个人设置</button></li>
-            <li><button onclick="showConsolePage('auth')" class="active">实名认证</button></li>
+            <li><button onclick="showConsolePage('auth')">实名认证</button></li>
           </ul>
+        </div>
+        <div class="sidebar-footer-user" id="sidebar-user-section" style="display:none;">
+          <div class="user-dropdown-menu" id="user-dropdown-menu">
+            <div class="user-dropdown-item" onclick="showConsolePage('settings')">
+              <span>⚙️</span>个人设置
+            </div>
+            <div class="user-dropdown-item" onclick="showConsolePage('wallet')">
+              <span>💳</span>钱包管理
+            </div>
+            <div class="user-dropdown-item logout" onclick="logout()">
+              <span>🚪</span>退出登录
+            </div>
+          </div>
+          <div class="user-info" onclick="toggleUserDropdown()">
+            <div class="user-avatar">用</div>
+            <div class="user-details">
+              <div class="user-name">用户</div>
+              <div class="user-email">user@example.com</div>
+            </div>
+            <div class="user-dropdown-arrow">▲</div>
+          </div>
         </div>
       </div>
       <div class="console-content">
@@ -4026,15 +4168,30 @@
             <div class="dashboard-cards">
               <div class="dash-stat-card">
                 <div class="stat-card-top">
-                  <span class="stat-label">消耗额度</span>
+                  <span class="stat-label">充值额度消耗</span>
                   <div class="stat-icon blue">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                   </div>
                 </div>
-                <div class="stat-value">¥14.84</div>
+                <div class="stat-value">¥9.72</div>
                 <div class="stat-trend up">
                   <span class="trend-arrow">▲</span>
-                  <span>12.5%</span>
+                  <span>10.3%</span>
+                  <span class="trend-label">较昨日</span>
+                </div>
+              </div>
+
+              <div class="dash-stat-card">
+                <div class="stat-card-top">
+                  <span class="stat-label">权益额度消耗</span>
+                  <div class="stat-icon teal">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                  </div>
+                </div>
+                <div class="stat-value">¥5.12</div>
+                <div class="stat-trend up">
+                  <span class="trend-arrow">▲</span>
+                  <span>18.6%</span>
                   <span class="trend-label">较昨日</span>
                 </div>
               </div>
@@ -4181,24 +4338,34 @@
 
                 <div class="chart-card-small">
                   <div class="chart-card-header">
-                    <h3>消耗额度 · 近 12 小时趋势</h3>
+                    <h3>额度消耗 · 近 12 小时趋势</h3>
                   </div>
                   <div class="mini-chart-container">
                     <svg class="mini-area-chart" viewBox="0 0 200 80" preserveAspectRatio="none">
                       <defs>
-                        <linearGradient id="miniGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                          <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:0.3"/>
-                          <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:0.05"/>
+                        <linearGradient id="miniGradientBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+                          <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:0.2"/>
+                          <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:0.02"/>
+                        </linearGradient>
+                        <linearGradient id="miniGradientTeal" x1="0%" y1="0%" x2="0%" y2="100%">
+                          <stop offset="0%" style="stop-color:#0D9488;stop-opacity:0.2"/>
+                          <stop offset="100%" style="stop-color:#0D9488;stop-opacity:0.02"/>
                         </linearGradient>
                       </defs>
-                      <path d="M0,60 Q20,55 35,50 T70,45 T105,55 T140,40 T175,50 T200,35 L200,80 L0,80 Z" fill="url(#miniGradient)"/>
-                      <path d="M0,60 Q20,55 35,50 T70,45 T105,55 T140,40 T175,50 T200,35" fill="none" stroke="#3B82F6" stroke-width="2"/>
+                      <path d="M0,55 Q20,50 35,45 T70,40 T105,50 T140,35 T175,45 T200,30 L200,80 L0,80 Z" fill="url(#miniGradientBlue)"/>
+                      <path d="M0,55 Q20,50 35,45 T70,40 T105,50 T140,35 T175,45 T200,30" fill="none" stroke="#3B82F6" stroke-width="2"/>
+                      <path d="M0,65 Q20,60 35,55 T70,58 T105,52 T140,48 T175,55 T200,42 L200,80 L0,80 Z" fill="url(#miniGradientTeal)"/>
+                      <path d="M0,65 Q20,60 35,55 T70,58 T105,52 T140,48 T175,55 T200,42" fill="none" stroke="#0D9488" stroke-width="2" stroke-dasharray="4,3"/>
                     </svg>
-                    <div class="mini-chart-labels">
+                    <div class="mini-chart-labels" style="margin-bottom: 6px;">
                       <span>8:00</span>
                       <span>11:00</span>
                       <span>16:00</span>
                       <span>19:00</span>
+                    </div>
+                    <div style="display: flex; gap: 16px; font-size: 11px; color: #6B7280;">
+                      <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 12px; height: 2px; background: #3B82F6; border-radius: 1px; display: inline-block;"></span>充值额度</span>
+                      <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 12px; height: 2px; background: #0D9488; border-radius: 1px; display: inline-block; border-top: 2px dashed #0D9488; background: none;"></span>权益额度</span>
                     </div>
                   </div>
                 </div>
@@ -4740,7 +4907,8 @@
           <div class="usage-logs-container">
             <!-- 顶部统计信息 -->
             <div class="logs-header-stats">
-              <span class="stat-item">消耗额度¥147.48</span>
+              <span class="stat-item">充值消耗 ¥96.30</span>
+              <span class="stat-item">权益消耗 ¥51.18</span>
               <span class="stat-item rpm">RPM: 0</span>
               <span class="stat-item tpm">TPM: 0</span>
             </div>
@@ -5327,6 +5495,9 @@
                   </div>
                 </div>
               </div>
+              <div style="margin-top: 20px;">
+                <button class="btn btn-primary btn-full" onclick="openRechargeModal(selectedPaymentMethod)">立即充值</button>
+              </div>
             </div>
 
             <!-- 右侧：邀请奖励 -->
@@ -5415,7 +5586,6 @@
                 <div class="redeem-modal-desc">使用兑换码可快速兑换充值额度</div>
                 <input type="text" class="redeem-modal-input" id="redeem-code-input" placeholder="请输入兑换码">
                 <button class="redeem-modal-btn" onclick="redeemCode()">立即兑换</button>
-                <div class="redeem-modal-link">在找兑换码? <a href="#">购买兑换码</a></div>
               </div>
             </div>
           </div>
@@ -5429,8 +5599,8 @@
               </div>
               <div class="alert-modal-body">
                 <div class="alert-desc-section">
-                  <p class="alert-desc-title">当个人可用余额低于昨日消耗*预期安全天数时，触发短信告警</p>
-                  <p class="alert-desc-content">举例，预期安全天数为3天，昨日消耗1000额度，如果当前余额低于 1000*3=3000，即低于3000时，则触发短信告警通知（24小时只发送一次）</p>
+                  <p class="alert-desc-title">当总余额低于近30天日均消耗*预期安全天数时，触发短信告警</p>
+                  <p class="alert-desc-content">举例，预期安全天数为3天，近30天日均消耗1000额度，如果当前余额低于3*1000=3000，即低于3000时，则触发短信告警通知（24小时只发送一次）</p>
                 </div>
                 <div class="alert-form-group">
                   <label>预期安全天数<span class="alert-required">*</span></label>
@@ -5571,16 +5741,15 @@
               <div class="bill-filter-row">
                 <div class="bill-filter-item">
                   <label>支付方式</label>
-                  <select class="bill-filter-select" onchange="filterBills()">
+                  <select class="bill-filter-select" id="bill-filter-payment" onchange="filterBills()">
                     <option value="all">全部方式</option>
-                    <option value="alipay">支付宝</option>
                     <option value="wechat">微信</option>
-                    <option value="gift">赠送</option>
+                    <option value="alipay">支付宝</option>
                   </select>
                 </div>
                 <div class="bill-filter-item">
                   <label>订单状态</label>
-                  <select class="bill-filter-select" onchange="filterBills()">
+                  <select class="bill-filter-select" id="bill-filter-status" onchange="filterBills()">
                     <option value="all">全部状态</option>
                     <option value="paying">支付中</option>
                     <option value="paid">已支付</option>
@@ -5589,25 +5758,47 @@
                   </select>
                 </div>
                 <div class="bill-filter-item">
-                  <label>钱包类型</label>
-                  <select class="bill-filter-select" onchange="filterBills()">
-                    <option value="all">全部钱包</option>
-                    <option value="recharge">充值钱包</option>
-                    <option value="gift">权益余额</option>
-                  </select>
+                  <label>开始时间</label>
+                  <input type="date" class="bill-filter-input" id="bill-filter-start" onchange="filterBills()">
                 </div>
                 <div class="bill-filter-item">
-                  <label>开始时间</label>
-                  <input type="date" class="bill-filter-input" onchange="filterBills()">
+                  <label>结束时间</label>
+                  <input type="date" class="bill-filter-input" id="bill-filter-end" onchange="filterBills()">
                 </div>
               </div>
               <div class="bill-filter-row" style="margin-top: 12px;">
-                <div class="bill-filter-item" style="grid-column: span 4;">
+                <div class="bill-filter-item" style="grid-column: span 2;">
                   <label>搜索</label>
                   <div class="bill-search-wrapper" style="width: 100%;">
-                    <input type="text" class="bill-filter-input" placeholder="搜索订单号..." oninput="filterBills()">
+                    <input type="text" class="bill-filter-input" id="bill-filter-search" placeholder="搜索订单号..." oninput="filterBills()">
                     <span class="bill-search-icon">🔍</span>
                   </div>
+                </div>
+                <div class="bill-filter-actions" style="grid-column: span 2; justify-content: flex-end; padding-top: 0;">
+                  <button class="bill-filter-btn bill-filter-btn-query" onclick="filterBills()">查询</button>
+                  <button class="bill-filter-btn bill-filter-btn-reset" onclick="resetBillFilters()">重置</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 数据统计 -->
+            <div class="bill-stats-card">
+              <div class="bill-stats-header">
+                <h4>数据统计</h4>
+                <span class="bill-stats-note">仅统计当前筛选结果</span>
+              </div>
+              <div class="bill-stats-grid">
+                <div class="bill-stats-item">
+                  <span class="bill-stats-label">记录数</span>
+                  <span class="bill-stats-value" id="stats-record-count">6</span>
+                </div>
+                <div class="bill-stats-item">
+                  <span class="bill-stats-label">充值额度合计</span>
+                  <span class="bill-stats-value" id="stats-recharge-amount">¥0.00</span>
+                </div>
+                <div class="bill-stats-item">
+                  <span class="bill-stats-label">实付金额合计</span>
+                  <span class="bill-stats-value" id="stats-paid-amount">¥0.00</span>
                 </div>
               </div>
             </div>
@@ -5616,17 +5807,19 @@
             <div class="bill-table-card">
               <div class="bill-table-header">
                 <h4>账单列表</h4>
-                <span class="bill-count">共 <span id="bill-count">9</span> 条记录</span>
+                <span class="bill-count">共 <span id="bill-count">6</span> 条记录</span>
               </div>
               <div class="bill-table-wrapper">
                 <table class="bill-table">
                   <thead>
                     <tr>
                       <th>订单号</th>
-                      <th>钱包</th>
                       <th>支付方式</th>
-                      <th>充值额度</th>
-                      <th>实付金额</th>
+                      <th class="amount-col">充值额度</th>
+                      <th class="amount-col">实付金额</th>
+                      <th class="amount-col">总余额</th>
+                      <th class="amount-col">充值余额</th>
+                      <th class="amount-col">权益余额</th>
                       <th>状态</th>
                       <th>审核备注</th>
                       <th>审核时间</th>
@@ -5635,124 +5828,88 @@
                     </tr>
                   </thead>
                   <tbody id="bill-table-body">
-                    <tr data-wallet="recharge" data-type="recharge" data-status="paying">
+                    <tr data-wallet="recharge" data-type="recharge" data-payment="wechat" data-status="paying">
                       <td class="bill-order-id">RZ20260625143025001</td>
-                      <td><span class="bill-wallet-tag recharge">充值钱包</span></td>
                       <td><span class="bill-payment-tag">微信</span></td>
-                      <td>¥500.00</td>
-                      <td>¥500.00</td>
+                      <td class="amount-col">¥500.00</td>
+                      <td class="amount-col">¥500.00</td>
+                      <td class="amount-col">¥146690.73</td>
+                      <td class="amount-col">¥100000.00</td>
+                      <td class="amount-col">¥46690.73</td>
                       <td><span class="bill-status-tag paying">支付中</span></td>
                       <td></td>
                       <td></td>
                       <td>2026-06-08 08:55:16</td>
                       <td><button class="bill-action-btn cancel" onclick="cancelOrder('RZ20260625143025001')">取消</button></td>
                     </tr>
-                    <tr data-wallet="recharge" data-type="recharge" data-status="paid">
+                    <tr data-wallet="recharge" data-type="recharge" data-payment="alipay" data-status="paid">
                       <td class="bill-order-id">RZ20260625143025002</td>
-                      <td><span class="bill-wallet-tag recharge">充值钱包</span></td>
                       <td><span class="bill-payment-tag">支付宝</span></td>
-                      <td>¥200.00</td>
-                      <td>¥180.00</td>
+                      <td class="amount-col">¥200.00</td>
+                      <td class="amount-col">¥180.00</td>
+                      <td class="amount-col">¥146690.73</td>
+                      <td class="amount-col">¥100000.00</td>
+                      <td class="amount-col">¥46690.73</td>
                       <td><span class="bill-status-tag paid">已支付</span></td>
                       <td>已确认到账</td>
                       <td>2026-06-08 10:00:00</td>
                       <td>2026-06-08 09:30:22</td>
                       <td></td>
                     </tr>
-                    <tr data-wallet="recharge" data-type="recharge" data-status="paid">
+                    <tr data-wallet="recharge" data-type="recharge" data-payment="alipay" data-status="paid">
                       <td class="bill-order-id">RZ20260625143025003</td>
-                      <td><span class="bill-wallet-tag recharge">充值钱包</span></td>
                       <td><span class="bill-payment-tag">支付宝</span></td>
-                      <td>¥1000.00</td>
-                      <td>¥850.00</td>
+                      <td class="amount-col">¥1000.00</td>
+                      <td class="amount-col">¥850.00</td>
+                      <td class="amount-col">¥146690.73</td>
+                      <td class="amount-col">¥100000.00</td>
+                      <td class="amount-col">¥46690.73</td>
                       <td><span class="bill-status-tag paid">已支付</span></td>
                       <td>已确认到账</td>
                       <td>2026-06-08 11:00:00</td>
                       <td>2026-06-08 10:15:45</td>
                       <td></td>
                     </tr>
-                    <tr data-wallet="recharge" data-type="recharge" data-status="paid">
+                    <tr data-wallet="recharge" data-type="recharge" data-payment="wechat" data-status="paid">
                       <td class="bill-order-id">RZ20260625143025004</td>
-                      <td><span class="bill-wallet-tag recharge">充值钱包</span></td>
                       <td><span class="bill-payment-tag">微信</span></td>
-                      <td>¥10000.00</td>
-                      <td>¥8500.00</td>
+                      <td class="amount-col">¥10000.00</td>
+                      <td class="amount-col">¥8500.00</td>
+                      <td class="amount-col">¥146690.73</td>
+                      <td class="amount-col">¥100000.00</td>
+                      <td class="amount-col">¥46690.73</td>
                       <td><span class="bill-status-tag paid">已支付</span></td>
                       <td>已确认到账</td>
                       <td>2026-06-01 14:30:00</td>
                       <td>2026-06-01 10:00:00</td>
                       <td></td>
                     </tr>
-                    <tr data-wallet="recharge" data-type="recharge" data-status="cancelled">
+                    <tr data-wallet="recharge" data-type="recharge" data-payment="wechat" data-status="cancelled">
                       <td class="bill-order-id">RZ20260625143025005</td>
-                      <td><span class="bill-wallet-tag recharge">充值钱包</span></td>
                       <td><span class="bill-payment-tag">微信</span></td>
-                      <td>¥100.00</td>
-                      <td>¥100.00</td>
+                      <td class="amount-col">¥100.00</td>
+                      <td class="amount-col">¥100.00</td>
+                      <td class="amount-col">¥146690.73</td>
+                      <td class="amount-col">¥100000.00</td>
+                      <td class="amount-col">¥46690.73</td>
                       <td><span class="bill-status-tag cancelled">已取消</span></td>
                       <td>用户主动取消</td>
                       <td>2026-06-05 11:00:00</td>
                       <td>2026-06-05 10:30:00</td>
                       <td></td>
                     </tr>
-                    <tr data-wallet="recharge" data-type="recharge" data-status="failed">
+                    <tr data-wallet="recharge" data-type="recharge" data-payment="alipay" data-status="failed">
                       <td class="bill-order-id">RZ20260625143025006</td>
-                      <td><span class="bill-wallet-tag recharge">充值钱包</span></td>
                       <td><span class="bill-payment-tag">支付宝</span></td>
-                      <td>¥300.00</td>
-                      <td>¥300.00</td>
+                      <td class="amount-col">¥300.00</td>
+                      <td class="amount-col">¥300.00</td>
+                      <td class="amount-col">¥146690.73</td>
+                      <td class="amount-col">¥100000.00</td>
+                      <td class="amount-col">¥46690.73</td>
                       <td><span class="bill-status-tag failed">支付失败</span></td>
                       <td>第三方支付回调失败</td>
                       <td>2026-06-15 13:00:00</td>
                       <td>2026-06-15 12:55:00</td>
-                      <td></td>
-                    </tr>
-                    <tr data-wallet="gift" data-type="gift" data-status="paid">
-                      <td class="bill-order-id">ZS20260625143025001</td>
-                      <td><span class="bill-wallet-tag gift">权益余额</span></td>
-                      <td><span class="bill-payment-tag">赠送</span></td>
-                      <td>¥50.00</td>
-                      <td>¥0.00</td>
-                      <td><span class="bill-status-tag paid">已支付</span></td>
-                      <td>首充赠送</td>
-                      <td>2026-06-01 14:30:00</td>
-                      <td>2026-06-01 14:30:00</td>
-                      <td></td>
-                    </tr>
-                    <tr data-wallet="gift" data-type="gift" data-status="paid">
-                      <td class="bill-order-id">ZS20260625143025002</td>
-                      <td><span class="bill-wallet-tag gift">权益余额</span></td>
-                      <td><span class="bill-payment-tag">赠送</span></td>
-                      <td>¥25.00</td>
-                      <td>¥0.00</td>
-                      <td><span class="bill-status-tag paid">已支付</span></td>
-                      <td>充值500元赠送</td>
-                      <td>2026-06-08 15:00:00</td>
-                      <td>2026-06-08 14:30:25</td>
-                      <td></td>
-                    </tr>
-                    <tr data-wallet="gift" data-type="gift" data-status="paid">
-                      <td class="bill-order-id">ZS20260625143025003</td>
-                      <td><span class="bill-wallet-tag gift">权益余额</span></td>
-                      <td><span class="bill-payment-tag">赠送</span></td>
-                      <td>¥100.00</td>
-                      <td>¥0.00</td>
-                      <td><span class="bill-status-tag paid">已支付</span></td>
-                      <td>邀请好友奖励</td>
-                      <td>2026-06-12 16:00:00</td>
-                      <td>2026-06-12 16:00:00</td>
-                      <td></td>
-                    </tr>
-                    <tr data-wallet="gift" data-type="gift" data-status="paid">
-                      <td class="bill-order-id">ZS20260625143025004</td>
-                      <td><span class="bill-wallet-tag gift">权益余额</span></td>
-                      <td><span class="bill-payment-tag">赠送</span></td>
-                      <td>¥200.00</td>
-                      <td>¥0.00</td>
-                      <td><span class="bill-status-tag paid">已支付</span></td>
-                      <td>兑换码兑换</td>
-                      <td>2026-06-01 08:00:00</td>
-                      <td>2026-06-01 08:00:00</td>
                       <td></td>
                     </tr>
                   </tbody>
@@ -5763,8 +5920,7 @@
               <div class="bill-pagination">
                 <button class="bill-page-btn" disabled>上一页</button>
                 <button class="bill-page-btn active">1</button>
-                <button class="bill-page-btn">2</button>
-                <button class="bill-page-btn">下一页</button>
+                <button class="bill-page-btn" disabled>下一页</button>
               </div>
             </div>
           </div>
@@ -5851,23 +6007,6 @@
                   <div class="cancel-warning-icon">⚠️</div>
                   <p class="cancel-warning-text">取消后无法恢复，是否确认取消订单？</p>
                 </div>
-                <div class="cancel-form">
-                  <div class="cancel-form-group">
-                    <label>取消原因</label>
-                    <select id="cancel-reason" class="cancel-select">
-                      <option value="">请选择取消原因</option>
-                      <option value="重复支付">重复支付</option>
-                      <option value="信息填写错误">信息填写错误</option>
-                      <option value="不想购买了">不想购买了</option>
-                      <option value="支付失败">支付失败</option>
-                      <option value="其他原因">其他原因</option>
-                    </select>
-                  </div>
-                  <div class="cancel-form-group">
-                    <label>备注 <span class="cancel-optional">（可选）</span></label>
-                    <textarea id="cancel-remark" class="cancel-textarea" placeholder="请输入备注信息" rows="3"></textarea>
-                  </div>
-                </div>
               </div>
               <div class="cancel-modal-footer">
                 <button class="cancel-btn-cancel" onclick="closeCancelModal()">取消</button>
@@ -5902,9 +6041,6 @@
                 </div>
                 <div class="settings-balance-stat">
                   <span>📊</span>请求次数 4784
-                </div>
-                <div class="settings-balance-stat">
-                  <span>👥</span>用户分组 default
                 </div>
               </div>
             </div>
@@ -5975,11 +6111,11 @@
                     <span>🔑</span>注册 Passkey
                   </button>
                 </div>
-                <div class="settings-item">
+                <div class="settings-item" style="display:none;">
                   <div class="settings-item-info">
                     <div class="settings-item-icon">🛡</div>
                     <div class="settings-item-content">
-                      <h4>两步验证设置 <span class="status-tag" id="tfa-status">未启用</span><span class="tfa-preview-tag" onclick="showTfaPreview()">查看验证效果</span></h4>
+                      <h4>两步验证设置 <span class="status-tag" id="tfa-status">未启用</span></h4>
                       <p>两步验证（2FA）为您的账户提供额外的安全保护。启用后，登录时需要输入密码和验证码应用生成的验证码。</p>
                       <p class="tfa-recovery-info" id="tfa-recovery-info" style="display:none;">剩余备用码: <span id="tfa-recovery-count">4</span>个</p>
                     </div>
@@ -6705,7 +6841,7 @@
                 <div class="prd-tooltip" id="tooltip-personal-auth-card" style="top: 30px;">
                   <button class="prd-close" onclick="event.stopPropagation(); togglePrdTooltip('tooltip-personal-auth-card')">×</button>
                   <div class="prd-title">说明</div>
-                  <div class="prd-desc">若是注册的个人，则进来只显示个人的入口</div>
+                  <div class="prd-desc">若是注册的个人，则进来只显示个人的入口，在充值时需提示需认证</div>
                 </div>
               </div>
               <div class="auth-card" onclick="showAuthPanel('enterprise-auth')">
@@ -6719,7 +6855,7 @@
                 <div class="prd-tooltip" id="tooltip-enterprise-auth-card" style="top: 30px;">
                   <button class="prd-close" onclick="event.stopPropagation(); togglePrdTooltip('tooltip-enterprise-auth-card')">×</button>
                   <div class="prd-title">说明</div>
-                  <div class="prd-desc">若是注册的企业，则进来只显示企业的入口</div>
+                  <div class="prd-desc">若是注册的企业，则进来只显示企业的入口，未做认证，所有的菜单企业不允许点击，只允许点击实名认证菜单，其他菜单呈现灰色，选中其他菜单时需提示请先完成认证</div>
                 </div>
               </div>
             </div>
@@ -7466,6 +7602,39 @@
       }
     }
 
+    function toggleUserDropdown() {
+      const menu = document.getElementById('user-dropdown-menu');
+      if (menu) {
+        menu.classList.toggle('show');
+      }
+    }
+
+    function logout() {
+      setLoggedIn(false);
+      const menu = document.getElementById('user-dropdown-menu');
+      if (menu) menu.classList.remove('show');
+      showPage('page-home');
+    }
+
+    function updateHeaderButtons() {
+      const loginBtn = document.getElementById('nav-login-btn');
+      const registerBtn = document.getElementById('nav-register-btn');
+      const playgroundBtn = document.getElementById('nav-playground-btn');
+      const sidebarUserSection = document.getElementById('sidebar-user-section');
+
+      if (isLoggedIn()) {
+        if (loginBtn) loginBtn.style.display = 'none';
+        if (registerBtn) registerBtn.style.display = 'none';
+        if (playgroundBtn) playgroundBtn.style.display = 'inline-block';
+        if (sidebarUserSection) sidebarUserSection.style.display = 'block';
+      } else {
+        if (loginBtn) loginBtn.style.display = 'inline-block';
+        if (registerBtn) registerBtn.style.display = 'inline-block';
+        if (playgroundBtn) playgroundBtn.style.display = 'none';
+        if (sidebarUserSection) sidebarUserSection.style.display = 'none';
+      }
+    }
+
     function showPage(pageId) {
       const pages = document.querySelectorAll('.page');
       const navButtons = document.querySelectorAll('.nav-links button');
@@ -7483,7 +7652,7 @@
       } else if (pageId === 'page-login') {
         initLoginForm();
       } else if (pageId === 'page-console') {
-        showConsolePage('auth');
+        showConsolePage('dashboard');
       }
     }
 
@@ -7501,6 +7670,10 @@
       
       const activeBtn = document.querySelector(`.sidebar-section button[onclick="showConsolePage('${panelId}')"]`);
       if (activeBtn) activeBtn.classList.add('active');
+
+      if (panelId === 'bill') {
+        filterBills();
+      }
     }
 
     function toggleLogDetail(logId) {
@@ -7562,40 +7735,36 @@
 
     function filterBills() {
       const rows = document.querySelectorAll('#bill-table-body tr');
-      const typeSelect = document.querySelectorAll('.bill-filter-select')[0];
-      const statusSelect = document.querySelectorAll('.bill-filter-select')[1];
-      const walletSelect = document.querySelectorAll('.bill-filter-select')[2];
-      const searchInput = document.querySelector('.bill-search-wrapper .bill-filter-input');
-      const dateInputs = document.querySelectorAll('.bill-filter-input[type="date"]');
-      const startDateInput = dateInputs.length >= 1 ? dateInputs[0] : null;
+      const paymentSelect = document.getElementById('bill-filter-payment');
+      const statusSelect = document.getElementById('bill-filter-status');
+      const searchInput = document.getElementById('bill-filter-search');
+      const startDateInput = document.getElementById('bill-filter-start');
+      const endDateInput = document.getElementById('bill-filter-end');
 
-      const typeFilter = typeSelect ? typeSelect.value : 'all';
+      const paymentFilter = paymentSelect ? paymentSelect.value : 'all';
       const statusFilter = statusSelect ? statusSelect.value : 'all';
-      const walletFilter = walletSelect ? walletSelect.value : 'all';
       const searchText = searchInput ? searchInput.value.toLowerCase() : '';
       const startDate = startDateInput ? startDateInput.value : '';
+      const endDate = endDateInput ? endDateInput.value : '';
 
       let visibleCount = 0;
+      let totalRechargeAmount = 0;
+      let totalPaidAmount = 0;
 
       rows.forEach(row => {
-        const wallet = row.dataset.wallet;
-        const type = row.dataset.type;
+        const payment = row.dataset.payment;
         const status = row.dataset.status;
         const orderId = row.querySelector('.bill-order-id').textContent.toLowerCase();
-        const createTime = row.cells[9].textContent;
+        const createTime = row.cells[10].textContent;
         const dateText = createTime.split(' ')[0];
 
         let show = true;
 
-        if (show && typeFilter !== 'all' && type !== typeFilter) {
+        if (show && paymentFilter !== 'all' && payment !== paymentFilter) {
           show = false;
         }
 
         if (show && statusFilter !== 'all' && status !== statusFilter) {
-          show = false;
-        }
-
-        if (show && walletFilter !== 'all' && wallet !== walletFilter) {
           show = false;
         }
 
@@ -7609,12 +7778,43 @@
           if (rowDate < start) show = false;
         }
 
+        if (show && endDate) {
+          const rowDate = new Date(dateText);
+          const end = new Date(endDate);
+          end.setHours(23, 59, 59);
+          if (rowDate > end) show = false;
+        }
+
         row.style.display = show ? '' : 'none';
-        if (show) visibleCount++;
+        if (show) {
+          visibleCount++;
+          const rechargeText = row.cells[2].textContent.replace(/[^0-9.-]/g, '');
+          const paidText = row.cells[3].textContent.replace(/[^0-9.-]/g, '');
+          totalRechargeAmount += parseFloat(rechargeText) || 0;
+          totalPaidAmount += parseFloat(paidText) || 0;
+        }
       });
 
       const countEl = document.getElementById('bill-count');
       if (countEl) countEl.textContent = visibleCount;
+
+      const statsCountEl = document.getElementById('stats-record-count');
+      if (statsCountEl) statsCountEl.textContent = visibleCount;
+
+      const statsRechargeEl = document.getElementById('stats-recharge-amount');
+      if (statsRechargeEl) statsRechargeEl.textContent = '¥' + totalRechargeAmount.toFixed(2);
+
+      const statsPaidEl = document.getElementById('stats-paid-amount');
+      if (statsPaidEl) statsPaidEl.textContent = '¥' + totalPaidAmount.toFixed(2);
+    }
+
+    function resetBillFilters() {
+      document.getElementById('bill-filter-payment').value = 'all';
+      document.getElementById('bill-filter-status').value = 'all';
+      document.getElementById('bill-filter-start').value = '';
+      document.getElementById('bill-filter-end').value = '';
+      document.getElementById('bill-filter-search').value = '';
+      filterBills();
     }
 
     let currentRefundOrderId = '';
@@ -7624,8 +7824,6 @@
 
     function cancelOrder(orderId) {
       currentCancelOrderId = orderId;
-      document.getElementById('cancel-reason').value = '';
-      document.getElementById('cancel-remark').value = '';
       document.getElementById('cancel-modal').style.display = 'flex';
     }
 
@@ -7635,13 +7833,6 @@
     }
 
     function confirmCancel() {
-      const reason = document.getElementById('cancel-reason').value;
-      if (!reason) {
-        alert('请选择取消原因');
-        return;
-      }
-      const remark = document.getElementById('cancel-remark').value;
-
       const rows = document.querySelectorAll('#bill-table-body tr');
       let targetRow = null;
       rows.forEach(r => {
@@ -7656,8 +7847,8 @@
         statusTag.className = 'bill-status-tag cancelled';
         targetRow.dataset.status = 'cancelled';
         
-        targetRow.cells[6].textContent = reason || '用户主动取消';
-        targetRow.cells[7].textContent = new Date().toLocaleString('zh-CN', {
+        targetRow.cells[8].textContent = '用户主动取消';
+        targetRow.cells[9].textContent = new Date().toLocaleString('zh-CN', {
           year: 'numeric', month: '2-digit', day: '2-digit',
           hour: '2-digit', minute: '2-digit', second: '2-digit'
         }).replace(/\//g, '-');
@@ -7704,7 +7895,7 @@
         return;
       }
 
-      alert(`告警设置已提交\n\n预期安全天数：${days}天\n\n当可用余额低于 昨日消耗 × ${days} 时，将触发短信告警通知（24小时只发送一次）`);
+      alert(`告警设置已提交\n\n预期安全天数：${days}天\n\n当总余额低于 近30天日均消耗 × ${days} 时，将触发短信告警通知（24小时只发送一次）`);
 
       closeAlertModal();
     }
@@ -7746,7 +7937,7 @@
       });
 
       if (targetRow) {
-        targetRow.cells[4].textContent = '¥' + finalAmount.toFixed(2);
+        targetRow.cells[3].textContent = '¥' + finalAmount.toFixed(2);
 
         const statusTag = targetRow.querySelector('.bill-status-tag');
         if (refundType === 'full') {
@@ -7761,8 +7952,8 @@
           targetRow.dataset.type = 'refund';
         }
 
-        targetRow.cells[6].textContent = remark || (refundType === 'full' ? '全额退款' : '部分退款');
-        targetRow.cells[7].textContent = new Date().toLocaleString('zh-CN', {
+        targetRow.cells[8].textContent = remark || (refundType === 'full' ? '全额退款' : '部分退款');
+        targetRow.cells[9].textContent = new Date().toLocaleString('zh-CN', {
           year: 'numeric', month: '2-digit', day: '2-digit',
           hour: '2-digit', minute: '2-digit', second: '2-digit'
         }).replace(/\//g, '-');
@@ -7914,7 +8105,6 @@
         `¥${info.rechargeAmount.toFixed(2)}`;
       document.getElementById('modal-gift-amount').textContent =
         `+¥${info.giftAmount.toFixed(2)}`;
-      document.getElementById('modal-discount').textContent = info.discount;
       document.getElementById('modal-total-amount').textContent =
         `¥${info.actualPay.toFixed(2)}`;
       document.getElementById('modal-pay-amount').textContent =
@@ -8657,7 +8847,7 @@
       alert('验证成功，登录成功！');
       closeTfaPreview();
       showPage('page-console');
-      showConsolePage('chat-playground');
+      showConsolePage('dashboard');
     }
     function showRegenRecoveryModal() {
       document.getElementById('regen-step-1').style.display = 'block';
@@ -9220,7 +9410,7 @@
       setLoggedIn(true);
       alert('登录成功！');
       showPage('page-console');
-      showConsolePage('chat-playground');
+      showConsolePage('dashboard');
     }
     
     function handleSmsLogin(event) {
@@ -9228,7 +9418,7 @@
       setLoggedIn(true);
       alert('登录成功！');
       showPage('page-console');
-      showConsolePage('chat-playground');
+      showConsolePage('dashboard');
     }
     
     function getSmsCode() {
