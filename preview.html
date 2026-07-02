@@ -547,9 +547,9 @@
     .time-tag { font-size: 12px; color: #3B82F6; background: #EFF6FF; padding: 4px 10px; border-radius: 12px; }
 
     .line-chart-container { display: flex; gap: 12px; }
-    .chart-y-axis { display: flex; flex-direction: column; justify-content: space-between; height: 200px; font-size: 11px; color: #9CA3AF; padding-top: 5px; }
+    .chart-y-axis { display: flex; flex-direction: column; justify-content: space-between; height: 260px; font-size: 11px; color: #9CA3AF; padding-top: 5px; }
     .chart-content { flex: 1; }
-    .line-chart-svg { width: 100%; height: 200px; display: block; }
+    .line-chart-svg { width: 100%; height: 260px; display: block; }
     .chart-x-axis { display: flex; justify-content: space-between; font-size: 11px; color: #9CA3AF; margin-top: 8px; }
     .chart-legend-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 16px; padding-top: 16px; border-top: 1px solid #F3F4F6; }
     .chart-legend-row .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #6B7280; }
@@ -565,8 +565,40 @@
     .metric-value { font-size: 14px; font-weight: 600; color: #1F2937; }
 
     .mini-chart-container { margin-top: 8px; }
-    .mini-area-chart { width: 100%; height: 60px; display: block; }
+    .mini-area-chart { width: 100%; height: 100px; display: block; }
     .mini-chart-labels { display: flex; justify-content: space-between; font-size: 10px; color: #9CA3AF; margin-top: 4px; }
+
+    .dashboard-bottom { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-top: 16px; }
+    .dash-announce-card { background: white; border-radius: 12px; padding: 20px; border: 1px solid #E5E7EB; }
+    .dash-announce-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #F3F4F6; flex-wrap: wrap; gap: 10px; row-gap: 10px; }
+    .dash-announce-header-left { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .dash-announce-header h3 { font-size: 15px; font-weight: 600; color: #1F2937; margin: 0; display: flex; align-items: center; gap: 8px; }
+    .dash-announce-badge { font-size: 12px; color: #3B82F6; background: #EFF6FF; padding: 4px 10px; border-radius: 12px; flex-shrink: 0; }
+    .dash-status-legend { display: flex; gap: 10px; font-size: 12px; color: #6B7280; flex-shrink: 0; flex-wrap: wrap; }
+    .dash-status-legend span { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+    .dash-status-legend .legend-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+    .dash-announce-list { display: flex; flex-direction: column; gap: 20px; }
+    .dash-announce-item { display: flex; gap: 14px; position: relative; }
+    .dash-announce-item::before { content: ''; position: absolute; left: 5px; top: 26px; bottom: -20px; width: 1px; background: #E5E7EB; }
+    .dash-announce-item:last-child::before { display: none; }
+    .dash-announce-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; margin-top: 4px; border: 2px solid white; box-shadow: 0 0 0 1px #E5E7EB; }
+    .dash-announce-dot.success { background: #10B981; box-shadow: 0 0 0 1px #A7F3D0; }
+    .dash-announce-dot.processing { background: #3B82F6; box-shadow: 0 0 0 1px #BFDBFE; }
+    .dash-announce-dot.default { background: #9CA3AF; box-shadow: 0 0 0 1px #E5E7EB; }
+    .dash-announce-dot.warning { background: #F59E0B; box-shadow: 0 0 0 1px #FDE68A; }
+    .dash-announce-dot.error { background: #EF4444; box-shadow: 0 0 0 1px #FECACA; }
+    .dash-announce-content { flex: 1; }
+    .dash-announce-title { font-size: 14px; font-weight: 500; color: #1F2937; margin-bottom: 5px; }
+    .dash-announce-meta { font-size: 12px; color: #9CA3AF; }
+
+    .dash-faq-card { background: white; border-radius: 12px; padding: 20px; border: 1px solid #E5E7EB; }
+    .dash-faq-header { margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #F3F4F6; }
+    .dash-faq-header h3 { font-size: 15px; font-weight: 600; color: #1F2937; margin: 0; display: flex; align-items: center; gap: 8px; }
+    .dash-faq-list { display: flex; flex-direction: column; }
+    .dash-faq-item { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid #F3F4F6; cursor: pointer; }
+    .dash-faq-item:last-child { border-bottom: none; }
+    .dash-faq-title { font-size: 14px; font-weight: 600; color: #1F2937; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .dash-faq-expand { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid #9CA3AF; color: #6B7280; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
     
     /* 令牌管理样式 */
     .tokens-container { padding: 24px; }
@@ -578,15 +610,15 @@
     
     .tokens-main-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
     .tokens-actions { display: flex; gap: 8px; }
-    .action-btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; white-space: nowrap; font-weight: 500; min-width: 100px; justify-content: center; }
-    .action-btn.primary { background: #10B981; color: white; }
-    .action-btn.secondary { background: #FEF3C7; color: #92400E; }
-    .action-btn.danger { background: #FEE2E2; color: #DC2626; }
+    .tokens-actions .action-btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; white-space: nowrap; font-weight: 500; min-width: 100px; justify-content: center; }
+    .tokens-actions .action-btn.primary { background: #10B981; color: white; }
+    .tokens-actions .action-btn.secondary { background: #FEF3C7; color: #92400E; }
+    .tokens-actions .action-btn.danger { background: #FEE2E2; color: #DC2626; }
     
     .tokens-search { display: flex; align-items: center; gap: 8px; }
     .search-group { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: white; border: 1px solid #E5E7EB; border-radius: 6px; min-width: 180px; }
     .search-input { border: none; outline: none; font-size: 14px; flex: 1; }
-    .search-btn { padding: 8px 16px; background: #E5E7EB; color: #374151; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; }
+    .tokens-search .search-btn { padding: 8px 16px; background: #E5E7EB; color: #374151; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; }
     .reset-btn { padding: 8px 16px; background: #E5E7EB; color: #374151; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; }
     
     .tokens-table-wrapper { display: flex; background: white; border-radius: 10px; border: 1px solid #E5E7EB; overflow: hidden; margin-bottom: 20px; }
@@ -719,14 +751,6 @@
 
     .logs-pagination { display: flex; justify-content: space-between; align-items: center; padding: 16px; background: white; border-radius: 10px; border: 1px solid #E5E7EB; flex-wrap: wrap; gap: 12px; }
     .pagination-info { font-size: 13px; color: #6B7280; }
-    .pagination-controls { display: flex; align-items: center; gap: 8px; }
-    .pagination-text { font-size: 13px; color: #6B7280; margin-right: 8px; }
-    .pagination-btn { padding: 6px 12px; border: 1px solid #E5E7EB; border-radius: 4px; background: white; font-size: 13px; cursor: pointer; }
-    .pagination-btn:hover { border-color: #10B981; }
-    .pagination-btn.active { background: #10B981; color: white; border-color: #10B981; }
-    .pagination-ellipsis { color: #9CA3AF; }
-    .pagination-select { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #6B7280; }
-    .pagination-select select { padding: 6px 10px; border: 1px solid #E5E7EB; border-radius: 4px; font-size: 13px; }
     .pagination-controls { display: flex; align-items: center; gap: 8px; }
     .pagination-text { font-size: 13px; color: #6B7280; margin-right: 8px; }
     .pagination-btn { width: 32px; height: 32px; border: 1px solid #D1D5DB; background: white; border-radius: 6px; font-size: 14px; cursor: pointer; color: #374151; }
@@ -1600,14 +1624,6 @@
     .bill-amount.positive { color: #059669; }
     .bill-amount.negative { color: #DC2626; }
 
-    .bill-status-tag {
-      display: inline-block; padding: 3px 10px; border-radius: 6px;
-      font-size: 12px; font-weight: 500;
-    }
-    .bill-status-tag.success { background: #ECFDF5; color: #059669; }
-    .bill-status-tag.pending { background: #FEF3C7; color: #D97706; }
-    .bill-status-tag.failed { background: #FEE2E2; color: #DC2626; }
-
     .bill-order-id {
       font-family: 'Courier New', monospace; font-size: 13px;
       color: #6B7280;
@@ -2369,13 +2385,6 @@
       border-radius: 4px; cursor: pointer; font-size: 14px;
     }
     .token-display-area .token-copy-btn:hover { background: #E5E7EB; }
-
-    @media (max-width: 900px) {
-      .settings-row { grid-template-columns: 1fr; }
-      .settings-banner { flex-direction: column; gap: 16px; align-items: flex-start; }
-      .settings-balance { text-align: left; }
-      .settings-balance-stats { flex-wrap: wrap; gap: 12px; }
-    }
 
     /* 两步验证弹窗 */
     .tfa-modal-overlay {
@@ -3642,14 +3651,14 @@
             </div>
           </div>
           <ul>
-            <li><a href="#" onclick="goToPlazaCategory('对话大模型')">对话大模型</a></li>
-            <li><a href="#" onclick="goToPlazaCategory('图像生成')">图像生成</a></li>
-            <li><a href="#" onclick="goToPlazaCategory('图像识别OCR')">图像识别OCR</a></li>
-            <li><a href="#" onclick="goToPlazaCategory('语音识别与合成')">语音识别与合成</a></li>
-            <li><a href="#" onclick="goToPlazaCategory('代码助手')">代码助手</a></li>
-            <li><a href="#" onclick="goToPlazaCategory('向量搜索与RAG')">向量搜索与RAG</a></li>
-            <li><a href="#" onclick="goToPlazaCategory('Agent编排')">Agent编排</a></li>
-            <li><a href="#" onclick="goToPlazaCategory('数据服务')">数据服务</a></li>
+            <li><a href="javascript:void(0)" onclick="goToPlazaCategory('对话大模型')">对话大模型</a></li>
+            <li><a href="javascript:void(0)" onclick="goToPlazaCategory('图像生成')">图像生成</a></li>
+            <li><a href="javascript:void(0)" onclick="goToPlazaCategory('图像识别OCR')">图像识别OCR</a></li>
+            <li><a href="javascript:void(0)" onclick="goToPlazaCategory('语音识别与合成')">语音识别与合成</a></li>
+            <li><a href="javascript:void(0)" onclick="goToPlazaCategory('代码助手')">代码助手</a></li>
+            <li><a href="javascript:void(0)" onclick="goToPlazaCategory('向量搜索与RAG')">向量搜索与RAG</a></li>
+            <li><a href="javascript:void(0)" onclick="goToPlazaCategory('Agent编排')">Agent编排</a></li>
+            <li><a href="javascript:void(0)" onclick="goToPlazaCategory('数据服务')">数据服务</a></li>
           </ul>
         </div>
       </div>
@@ -4341,7 +4350,7 @@
                     <h3>额度消耗 · 近 12 小时趋势</h3>
                   </div>
                   <div class="mini-chart-container">
-                    <svg class="mini-area-chart" viewBox="0 0 200 80" preserveAspectRatio="none">
+                    <svg class="mini-area-chart" viewBox="0 0 200 100" preserveAspectRatio="none">
                       <defs>
                         <linearGradient id="miniGradientBlue" x1="0%" y1="0%" x2="0%" y2="100%">
                           <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:0.2"/>
@@ -4352,10 +4361,10 @@
                           <stop offset="100%" style="stop-color:#0D9488;stop-opacity:0.02"/>
                         </linearGradient>
                       </defs>
-                      <path d="M0,55 Q20,50 35,45 T70,40 T105,50 T140,35 T175,45 T200,30 L200,80 L0,80 Z" fill="url(#miniGradientBlue)"/>
-                      <path d="M0,55 Q20,50 35,45 T70,40 T105,50 T140,35 T175,45 T200,30" fill="none" stroke="#3B82F6" stroke-width="2"/>
-                      <path d="M0,65 Q20,60 35,55 T70,58 T105,52 T140,48 T175,55 T200,42 L200,80 L0,80 Z" fill="url(#miniGradientTeal)"/>
-                      <path d="M0,65 Q20,60 35,55 T70,58 T105,52 T140,48 T175,55 T200,42" fill="none" stroke="#0D9488" stroke-width="2" stroke-dasharray="4,3"/>
+                      <path d="M0,69 Q20,63 35,56 T70,50 T105,63 T140,44 T175,56 T200,38 L200,100 L0,100 Z" fill="url(#miniGradientBlue)"/>
+                      <path d="M0,69 Q20,63 35,56 T70,50 T105,63 T140,44 T175,56 T200,38" fill="none" stroke="#3B82F6" stroke-width="2"/>
+                      <path d="M0,81 Q20,75 35,69 T70,73 T105,65 T140,60 T175,69 T200,53 L200,100 L0,100 Z" fill="url(#miniGradientTeal)"/>
+                      <path d="M0,81 Q20,75 35,69 T70,73 T105,65 T140,60 T175,69 T200,53" fill="none" stroke="#0D9488" stroke-width="2" stroke-dasharray="4,3"/>
                     </svg>
                     <div class="mini-chart-labels" style="margin-bottom: 6px;">
                       <span>8:00</span>
@@ -4367,6 +4376,63 @@
                       <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 12px; height: 2px; background: #3B82F6; border-radius: 1px; display: inline-block;"></span>充值额度</span>
                       <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 12px; height: 2px; background: #0D9488; border-radius: 1px; display: inline-block; border-top: 2px dashed #0D9488; background: none;"></span>权益额度</span>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dashboard-bottom">
+              <div class="dash-announce-card">
+                <div class="dash-announce-header">
+                  <div class="dash-announce-header-left">
+                    <h3><span>🔔</span>系统公告</h3>
+                    <span class="dash-announce-badge">显示最新20条</span>
+                  </div>
+                  <div class="dash-status-legend">
+                    <span><span class="legend-dot" style="background:#9CA3AF"></span>默认</span>
+                    <span><span class="legend-dot" style="background:#3B82F6"></span>进行中</span>
+                    <span><span class="legend-dot" style="background:#10B981"></span>成功</span>
+                    <span><span class="legend-dot" style="background:#F59E0B"></span>警告</span>
+                    <span><span class="legend-dot" style="background:#EF4444"></span>异常</span>
+                  </div>
+                </div>
+                <div class="dash-announce-list">
+                  <div class="dash-announce-item">
+                    <div class="dash-announce-dot success"></div>
+                    <div class="dash-announce-content">
+                      <div class="dash-announce-title">测试3</div>
+                      <div class="dash-announce-meta">38 分钟前 2026-07-01 15:16</div>
+                    </div>
+                  </div>
+                  <div class="dash-announce-item">
+                    <div class="dash-announce-dot processing"></div>
+                    <div class="dash-announce-content">
+                      <div class="dash-announce-title">测试2</div>
+                      <div class="dash-announce-meta">38 分钟前 2026-07-01 15:16</div>
+                    </div>
+                  </div>
+                  <div class="dash-announce-item">
+                    <div class="dash-announce-dot default"></div>
+                    <div class="dash-announce-content">
+                      <div class="dash-announce-title">测试</div>
+                      <div class="dash-announce-meta">38 分钟前 2026-07-01 15:15</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dash-faq-card">
+                <div class="dash-faq-header">
+                  <h3><span>❓</span>常见问答</h3>
+                </div>
+                <div class="dash-faq-list">
+                  <div class="dash-faq-item">
+                    <span class="dash-faq-title">测试标题</span>
+                    <span class="dash-faq-expand">+</span>
+                  </div>
+                  <div class="dash-faq-item">
+                    <span class="dash-faq-title">测试</span>
+                    <span class="dash-faq-expand">+</span>
                   </div>
                 </div>
               </div>
@@ -4690,7 +4756,7 @@
               <!-- 聊天输入框 -->
               <div class="chat-input-area">
                 <div class="input-toolbar">
-                  <button class="input-btn" id="clear-btn" title="清空对话">
+                  <button class="input-btn" id="clear-btn" title="清空对话" onclick="clearChat()">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
                   </button>
                   <button class="input-btn" title="上传图片">
@@ -7577,22 +7643,6 @@
       updateHeaderButtons();
     }
 
-    function updateHeaderButtons() {
-      const loginBtn = document.getElementById('nav-login-btn');
-      const registerBtn = document.getElementById('nav-register-btn');
-      const playgroundBtn = document.getElementById('nav-playground-btn');
-
-      if (isLoggedIn()) {
-        if (loginBtn) loginBtn.style.display = 'none';
-        if (registerBtn) registerBtn.style.display = 'none';
-        if (playgroundBtn) playgroundBtn.style.display = 'inline-block';
-      } else {
-        if (loginBtn) loginBtn.style.display = 'inline-block';
-        if (registerBtn) registerBtn.style.display = 'inline-block';
-        if (playgroundBtn) playgroundBtn.style.display = 'none';
-      }
-    }
-
     function handlePlaygroundClick() {
       if (isLoggedIn()) {
         showPage('page-console');
@@ -8326,6 +8376,28 @@
       } else {
         if (toggleBtn) toggleBtn.title = '折叠/展开侧边栏';
         if (expandBtn) expandBtn.classList.remove('show');
+      }
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('chat-input');
+      const messages = document.getElementById('chat-messages');
+      if (!input || !input.value.trim() || !messages) return;
+      const text = input.value.trim();
+      input.value = '';
+      const div = document.createElement('div');
+      div.className = 'message-bubble user-bubble';
+      div.innerHTML = '<div class="message-content"><p>' + text + '</p></div>';
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function clearChat() {
+      const messages = document.getElementById('chat-messages');
+      if (messages) {
+        while (messages.children.length > 0) {
+          messages.removeChild(messages.lastChild);
+        }
       }
     }
 
